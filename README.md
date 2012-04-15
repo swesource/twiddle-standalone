@@ -11,15 +11,19 @@ See also JSR-160.
 
 ## Usage
 
-Set an environment variable TWIDDLE_HOME to the root of the twiddle-standalone directory. E g 
-    export TWIDDLE_HOME=/opt/twiddle-standalone
+Set an environment variable TWIDDLE_HOME to the root of the twiddle-standalone directory. E g
+
+	export TWIDDLE_HOME=/opt/twiddle-standalone
 
 Run twiddle as usual. E g
-  $TWIDDLE_HOME/bin/twiddle.sh -h
+
+	$TWIDDLE_HOME/bin/twiddle.sh -h
 
 Optionally, add $TWIDDLE_HOME/bin to your PATH environment variable, e g
-  export PATH=$PATH:$TWIDDLE_HOME/bin
+
+	export PATH=$PATH:$TWIDDLE_HOME/bin
 
 ...and then you can run twiddle directly, e g
-   twiddle.sh -h
+
+	twiddle.sh -h
 
