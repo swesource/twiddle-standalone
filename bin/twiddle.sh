@@ -12,6 +12,26 @@
 # All dependent JARs put in a common lib directory.
 # Script (this) is modified and put in bin directory
 # Tested on OSX 10.7.3 with JavaSE 1.6.0_31 against JBoss AS 7.1.1.Final (localhost:1090)
+#
+# 2013-11-17 Arnold Johansson
+# Enable the remoting-jmx protocol by adapting the TWIDDLE_CLASSPATH to utilise JBoss AS7 / WildFly modules.
+#
+
+# JBoss AS7
+#JBOSS_MODULEPATH=$JBOSS_HOME/modules
+#MODULES="org/jboss/remoting3/remoting-jmx org/jboss/remoting3 org/jboss/logging org/jboss/xnio org/jboss/xnio/nio org/jboss/sasl org/jboss/marshalling org/jboss/marshalling/river org/jboss/as/cli org/jboss/staxmapper org/jboss/as/protocol org/jboss/dmr org/jboss/as/controller-client org/jboss/threads org/jboss/as/controller"
+
+# WildFly
+JBOSS_MODULEPATH=$JBOSS_HOME/modules/system/layers/base/
+MODULES="org/jboss/remoting-jmx org/jboss/remoting org/jboss/logging org/jboss/xnio org/jboss/xnio/nio org/jboss/sasl org/jboss/marshalling org/jboss/marshalling/river org/jboss/as/cli org/jboss/staxmapper org/jboss/as/protocol org/jboss/dmr org/jboss/as/controller-client org/jboss/threads org/wildfly/security/manager" 
+
+for MODULE in $MODULES
+do
+    for JAR in `cd "$JBOSS_MODULEPATH/$MODULE/main/" && ls -1 *.jar`
+    do
+        TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$JBOSS_MODULEPATH/$MODULE/main/$JAR"
+    done
+done
 
 
 # Extract the directory and the program name
@@ -71,20 +91,21 @@ fi
 # Setup the classpath
 TWIDDLE_BOOT_CLASSPATH="$TWIDDLE_HOME/bin/twiddle.jar"
 
-if [ "x$TWIDDLE_CLASSPATH" = "x" ]; then
-    TWIDDLE_CLASSPATH="$TWIDDLE_BOOT_CLASSPATH"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jbossall-client.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jbosssx-client.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jnp-client.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jboss-common-core.jar"    
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/getopt.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/log4j.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jboss-logging.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jboss-jmx.jar"
-    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/dom4j.jar"    
-else
+#if [ "x$TWIDDLE_CLASSPATH" = "x" ]; then
+#    TWIDDLE_CLASSPATH="$TWIDDLE_BOOT_CLASSPATH"
     TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_BOOT_CLASSPATH"
-fi
+    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jbossall-client.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jbosssx-client.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jnp-client.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jboss-common-core.jar"    
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/getopt.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/log4j.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jboss-logging.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/jboss-jmx.jar"
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_HOME/lib/dom4j.jar"    
+#else
+#    TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$TWIDDLE_BOOT_CLASSPATH"
+#fi
 
 # For Cygwin, switch paths to Windows format before running java
 if $cygwin; then
