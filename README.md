@@ -11,19 +11,19 @@ To remedy this, twiddle-standalone was born.
 twiddle-standalone has initially been created by re-packaging the twiddle script (twiddle.sh with some modifications) and required JARs from JBoss AS 6.1.0.Final.  
 See also JSR-160. 
 
-To make twiddle-standalone work for JBossAS7/WildFly - that utilizes the remoting-jmx protocol for external retrieval of JMX vlies - various new modules (JARs) has been linked in.
+To make twiddle-standalone work for JBossAS7/WildFly - that utilizes the remoting-jmx protocol for external retrieval of JMX values - various new modules (JARs) has been linked in.
 As these modules vary somewhat between JBossAS7/WildFly distributions, they are currently not part of the twiddle-standalone distribution itself.
 
 ## Prerequisites
 
-Some JAR:s of JBoss AS7 or WildFly are needed for the rmoting-jmx protocol to work, so an installation of JBoss AS7 or WildFly is recommeded for eeasy setup of twiddle-standalone.
-Alternatively, look in $TWIDDLE_HOME/bin/twiddle.sh for the JAR:s needed - they are listed by the MODULES variable - and add them to a location of more convenience to you particular environment.
+Some JAR:s of JBoss AS7 or WildFly are needed for the remoting-jmx protocol to work, so a local (to twiddle-standalone) installation of JBoss AS7 or WildFly is recommended for easy setup.
+Alternatively, look in $TWIDDLE_HOME/bin/twiddle.sh for the JAR:s needed - they are listed by the MODULES variable - and add them to a location of more convenience to you particular environment and needs.
 
 ## Usage
 
 ### Set JBOSS_HOME
 
-First set an evironment variable JBOSS_HOME to the root of your JBossAS7/WildFly installation, in your shell or the twiddle.sh script itself.. E g
+First set an environment variable JBOSS_HOME to the root of your JBossAS7/WildFly installation, in your shell or the twiddle.sh script itself. E g
 
 	export JBOSS_HOME=/opt/wildfly-8.0.0.Beta1
 
@@ -52,7 +52,7 @@ which (with WildFly 8.0.0.Beta1) would give an output of something like
 	UnloadedClassCount=0
 	ObjectName=java.lang:type=ClassLoading
 
-## Compitability
+## Compatibility
 
 This version of twiddle-standalone has successfully (and unaltered)  been tested on
 OS X 10.9 with Java SE 7 (1.7.0_45) and JBossAS/WildFly  7.2.0 and Wildfly 8.0.0.Beta1
