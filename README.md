@@ -52,6 +52,8 @@ which (with WildFly 8.0.0.Beta1) would give an output of something like
 	UnloadedClassCount=0
 	ObjectName=java.lang:type=ClassLoading
 
+When running against JBoss/EAP server, please, manually uncomment JBoss section in twiddle.sh
+
 ## Compatibility
 
 This version of twiddle-standalone has successfully (and unaltered)  been tested on
