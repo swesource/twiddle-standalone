@@ -20,6 +20,7 @@
 # JBoss AS7
 #JBOSS_MODULEPATH=$JBOSS_HOME/modules
 #MODULES="org/jboss/remoting3/remoting-jmx org/jboss/remoting3 org/jboss/logging org/jboss/xnio org/jboss/xnio/nio org/jboss/sasl org/jboss/marshalling org/jboss/marshalling/river org/jboss/as/cli org/jboss/staxmapper org/jboss/as/protocol org/jboss/dmr org/jboss/as/controller-client org/jboss/threads org/jboss/as/controller"
+#TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$JBOSS_HOME/bin/client/jboss-client.jar"
 
 # WildFly
 JBOSS_MODULEPATH=$JBOSS_HOME/modules/system/layers/base/
