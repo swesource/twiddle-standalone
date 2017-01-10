@@ -28,7 +28,7 @@ MODULES="org/jboss/remoting-jmx org/jboss/remoting org/jboss/logging org/jboss/x
 
 for MODULE in $MODULES
 do
-    for JAR in `cd "$JBOSS_MODULEPATH/$MODULE/main/" && ls -1 *.jar`
+    for JAR in `find $JBOSS_MODULEPATH/$MODULE/main -name "*.jar"`
     do
         TWIDDLE_CLASSPATH="$TWIDDLE_CLASSPATH:$JBOSS_MODULEPATH/$MODULE/main/$JAR"
     done
